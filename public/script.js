@@ -1,5 +1,6 @@
 
-var audio = new Audio('/access_denied.mp3');
+var audioDenied = new Audio('/access_denied.mp3');
+var audioGranted = new Audio('/access_granted.mp3');
 
 
 async function load() {
@@ -23,19 +24,21 @@ async function login() {
     if(error) {
       return showError(error)
     }
-    return window.location = redirect
+    audioGranted.play()
+    document.querySelector('.login-btn').style.display = 'none'
+    return setTimeout(() => window.location = redirect, 2000)
   }
   accessDenied(true)
   setTimeout(() => {
     accessDenied(false)
-  },6000)
+  },5000)
 }
 
 function accessDenied(show=true) {
   document.querySelector('.error').style.display = show ? 'block' : 'none'
   document.querySelector('.login-btn').style.display = show ? 'none' : 'block'
   if(show) Array.from(document.querySelectorAll('input')).forEach(el => el.value = '')
-  if(show) audio.play()
+  if(show) audioDenied.play()
 }
 
 function showError(msg) {
