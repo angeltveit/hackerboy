@@ -1,4 +1,7 @@
 
+var audio = new Audio('/access_denied.mp3');
+
+
 async function load() {
   const response = await fetch('/data')
   const { real, dummy } = await response.json()
@@ -22,7 +25,17 @@ async function login() {
     }
     return window.location = redirect
   }
-  showError('Wrong username or password.')
+  accessDenied(true)
+  setTimeout(() => {
+    accessDenied(false)
+  },6000)
+}
+
+function accessDenied(show=true) {
+  document.querySelector('.error').style.display = show ? 'block' : 'none'
+  document.querySelector('.login-btn').style.display = show ? 'none' : 'block'
+  if(show) Array.from(document.querySelectorAll('input')).forEach(el => el.value = '')
+  if(show) audio.play()
 }
 
 function showError(msg) {

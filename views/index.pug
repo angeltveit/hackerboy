@@ -72,6 +72,17 @@ html(lang='en')
         z-index: -1;
         opacity: .3;
       }
+      .error {
+        color: red;
+        text-align: center;
+        font-size: 1.5em;
+        animation-name: blink;
+        animation-duration: 700ms;
+        animation-iteration-count: infinite;
+        margin-top: 2em;
+        display: none;
+      }
+      
       @keyframes blink {
         0% {
           opacity: 1;
@@ -85,6 +96,7 @@ html(lang='en')
       }
   body
     canvas(id='canv', width=500, height=200)
+    
     // Hack this page to figure out
     // what your gift is.
     h1.write Welcome to hackerboy.dev
@@ -95,7 +107,8 @@ html(lang='en')
 
       label Password:
       input.password(type="password", name="password")
-      button(onclick="login()") Login
+      button.login-btn(onclick="login()") Login
+      .error -• [ ACCESS DENIED ] •-
     script(src="/script.js").
 
       if(username === 'erlend' && password === 'AdM1n2020!') {
