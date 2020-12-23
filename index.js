@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+const moment = require('moment')
 const port = process.env.PORT || 3000
 
 function getEncoded() {
@@ -40,7 +41,11 @@ app.get('/', function (req, res) {
   res.render('index')
 })
 app.get('/thisisthegift', function (req, res) {
-  res.render('gift', { coupon: process.env.COUPON })
+  let coupon = process.env.COUPON
+  if(moment().isBefore('2020-12-24T16:30:00.139Z')) {
+    coupon = 'CENSORED'
+  }
+  res.render('gift', { coupon })
 })
 
 app.listen(port, () => {
