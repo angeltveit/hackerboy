@@ -1,0 +1,132 @@
+doctype html  
+html(lang='en')
+  head
+    title Hackerboy.dev
+    link(rel="preconnect" href="https://fonts.gstatic.com")
+    link(href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet")
+
+    style.
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        color: #21e317;
+        font-family: 'Share Tech Mono', monospace;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 3em;
+      }
+      .blink {
+        animation-name: blink;
+        animation-duration: 500ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      .form {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: 320px;
+      }
+      input {
+        background-color: #000;
+        border: 3px solid #21e317;
+        color: #21e317;
+        font-size: 2em;
+        padding: .5em;
+        outline: none;
+        border-radius: 5px;
+        font-family: 'Share Tech Mono', monospace;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      button {
+        padding: .25em;
+        font-size: 2em;
+        border-radius: 5px;
+        border: 3px solid #21e317;
+        background-color: transparent;
+        color: #21e317;
+        font-family: 'Share Tech Mono', monospace;
+        margin-top: 1.5em;
+        transition-property: background-color;
+        transition-duration: 700ms;
+        cursor: pointer;
+        outline: none;
+      }
+      button:hover {
+        background-color: rgba(55, 245, 34, .2);
+      }
+    
+      label {
+        margin-top: 1.5em;
+        font-size: 1.5em;
+      }
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: .3;
+      }
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+  body
+    canvas(id='canv', width=500, height=200)
+    // Hack this page to figure out
+    // what your gift is.
+    h1.write Welcome to hackerboy.dev
+      span.blink _
+    .form
+      label Username:
+      input.username(type="text", name="username")
+
+      label Password:
+      input.password(type="password", name="password")
+      button(onclick="login()") Login
+    script(src="/script.js").
+
+      if(username === 'erlend' && password === 'AdM1n2020!') {
+        showPresent()
+      }
+    script.
+      const canvas = document.getElementById('canv');
+      const ctx = canvas.getContext('2d');
+
+      const w = canvas.width = document.body.offsetWidth;
+      const h = canvas.height = document.body.offsetHeight;
+      const cols = Math.floor(w / 20) + 1;
+      const ypos = Array(cols).fill(0);
+
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, w, h);
+
+      function matrix () {
+        ctx.fillStyle = '#0001';
+        ctx.fillRect(0, 0, w, h);
+        
+        ctx.fillStyle = '#0f0';
+        ctx.font = '15pt monospace';
+        
+        ypos.forEach((y, ind) => {
+          const text = String.fromCharCode(Math.random() * 128);
+          const x = ind * 20;
+          ctx.fillText(text, x, y);
+          if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+          else ypos[ind] = y + 20;
+        });
+      }
+
+      setInterval(matrix, 50);

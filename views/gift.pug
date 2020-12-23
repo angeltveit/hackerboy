@@ -1,0 +1,179 @@
+doctype html  
+html(lang='en')
+  head
+    title Hackerboy.dev
+    link(rel="preconnect" href="https://fonts.gstatic.com")
+    link(href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet")
+
+    style.
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: black;
+        color: #21e317;
+        font-family: 'Share Tech Mono', monospace;
+        min-height: 100vh;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 3em;
+      }
+      .blink {
+        animation-name: blink;
+        animation-duration: 500ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+      }
+      .form {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: 320px;
+      }
+      input {
+        background-color: #000;
+        border: 3px solid #21e317;
+        color: #21e317;
+        font-size: 2em;
+        padding: .5em;
+        outline: none;
+        border-radius: 5px;
+        font-family: 'Share Tech Mono', monospace;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      button {
+        padding: .25em;
+        font-size: 2em;
+        border-radius: 5px;
+        border: 3px solid #21e317;
+        background-color: transparent;
+        color: #21e317;
+        font-family: 'Share Tech Mono', monospace;
+        margin-top: 1.5em;
+        transition-property: background-color;
+        transition-duration: 700ms;
+        cursor: pointer;
+        outline: none;
+      }
+      button:hover {
+        background-color: rgba(55, 245, 34, .2);
+      }
+    
+      label {
+        margin-top: 1.5em;
+        font-size: 1.5em;
+      }
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        opacity: .3;
+      }
+      h2 {
+        text-align: center;
+      }
+      .content {
+        opacity: 0;
+        animation-name: fade-in;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-delay: 7s;
+      }
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      span {
+        color: yellow;
+      }
+      .bg {
+        background-image:url(/bg.jpg);
+        background-size: cover;
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        animation-name: blink-in;
+        animation-duration: 5s;
+        animation-fill-mode: forwards;
+        animation-delay: 2s;
+        opacity: 0;
+      }
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes blink-in {
+        0% {
+          opacity: 1;
+        }
+        2% {
+          opacity: 0;
+        }
+        5% {
+          opacity: 1;
+        }
+        7% {
+          opacity: 0;
+        }
+        15% {
+          opacity: 1;
+        }
+        14% {
+          opacity: 0;
+        }
+        25% {
+          opacity: 1;
+        }
+        28% {
+          opacity: 0;
+        }
+        30% {
+          opacity: 1;
+        }
+        31% {
+          opacity: 0;
+        }
+        33% {
+          opacity: 1;
+        }
+        35% {
+          opacity: 0;
+        }
+        40% {
+          opacity: 1;
+        }
+        41% {
+          opacity: 0;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: .3;
+        }
+      }
+  body
+    .bg
+    .content
+      h1 Godt jobbet! Du har fått
+      h1 3 måneder gavekort på tryhackme!
+      h2='Voucher kode: '
+        span=coupon
