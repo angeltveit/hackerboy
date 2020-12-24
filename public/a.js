@@ -1,3 +1,30 @@
+/*
+* Looks like you found the real source.
+* There is a trick in here to get hints if you
+* are stuck. But be warned, hints will be counted.
+* One free hint though, try
+* remembering what functions do and read the code.
+*/
+
+/*
+  _    _                               
+ | |  | |                              
+ | |__| | __ _ _ __  _ __  _   _       
+ |  __  |/ _` | '_ \| '_ \| | | |      
+ | |  | | (_| | |_) | |_) | |_| |      
+ |_|  |_|\__,_| .__/| .__/ \__, |      
+              | |   | |     __/ |      
+              |_|   |_|    |___/       
+  _    _            _    _             
+ | |  | |          | |  (_)            
+ | |__| | __ _  ___| | ___ _ __   __ _ 
+ |  __  |/ _` |/ __| |/ / | '_ \ / _` |
+ | |  | | (_| | (__|   <| | | | | (_| |
+ |_|  |_|\__,_|\___|_|\_\_|_| |_|\__, |
+                                  __/ |
+                                 |___/ 
+*/
+
 
 var audioDenied = new Audio('/access_denied.mp3');
 var audioGranted = new Audio('/access_granted.mp3');
@@ -5,9 +32,10 @@ var audioGranted = new Audio('/access_granted.mp3');
 
 async function load() {
   const response = await fetch('/data')
-  const { real, dummy } = await response.json()
+  const { real, dummy, hint_count } = await response.json()
   window.encodedString = real
   window.dummyEncodedString = dummy
+  console.log('Count', hint_count)
 }
 
 async function login() {
@@ -43,6 +71,12 @@ function accessDenied(show=true) {
 
 function showError(msg) {
   alert(msg)
+}
+
+async function hint() {
+  const response = await fetch('/hint')
+  const { hint } = await response.json()
+  alert(hint)
 }
 
 load()
