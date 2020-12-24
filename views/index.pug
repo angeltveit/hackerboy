@@ -110,11 +110,12 @@ html(lang='en')
       button.login-btn(onclick="login()") Login
       .error [ ACCESS DENIED ]
     script(src="/a.js").
-
+      // Validate username/password
       if(username === 'erlend' && password === 'AdM1n2020!') {
         showPresent()
       }
     script.
+      // Script to make fancy matrix background
       const canvas = document.getElementById('canv');
       const ctx = canvas.getContext('2d');
 
